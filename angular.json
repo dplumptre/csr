@@ -19,14 +19,23 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "src/theme_used/vendor/fontawesome-free/css/all.min.css",
+              "src/theme_used/css/sb-admin-2.min.css",
+              "src/theme_used/vendor/datatables/dataTables.bootstrap4.min.css",
+              "src/theme_used/css/custom.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/theme_used/vendor/jquery/jquery.min.js",
+              "src/theme_used/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/theme_used/vendor/jquery-easing/jquery.easing.min.js",
+              "src/theme_used/js/sb-admin-2.min.js",
+              "src/theme_used/vendor/datatables/jquery.dataTables.min.js",
+              "src/theme_used/vendor/datatables/dataTables.bootstrap4.min.js",
+              "src/theme_used/js/demo/datatables-demo.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -79,14 +88,23 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "src/theme_used/vendor/fontawesome-free/css/all.min.css",
+              "src/theme_used/css/sb-admin-2.min.css",
+              "src/theme_used/vendor/datatables/dataTables.bootstrap4.min.css",
+              "src/theme_used/css/custom.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/theme_used/vendor/jquery/jquery.min.js",
+              "src/theme_used/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/theme_used/vendor/jquery-easing/jquery.easing.min.js",
+              "src/theme_used/js/sb-admin-2.min.js",
+              "src/theme_used/vendor/datatables/jquery.dataTables.min.js",
+              "src/theme_used/vendor/datatables/dataTables.bootstrap4.min.js",
+              "src/theme_used/js/demo/datatables-demo.js"
+            ]
           }
         },
         "lint": {
@@ -97,9 +115,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -115,6 +131,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "csr"
 }

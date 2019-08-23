@@ -1,0 +1,12 @@
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #e74a3b !important;
+
+  border-bottom: 1px solid #e3e6f0;
+  color: white !important;
+}
+
+.card-header h6 {
+  color: white !important;
+}
