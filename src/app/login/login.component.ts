@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Authservice } from "../services/authservice";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-login",
@@ -7,17 +8,18 @@ import { Authservice } from "../services/authservice";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  @ViewChild("email", { static: true }) element_email: ElementRef;
-  @ViewChild("password", { static: true }) element_pass: ElementRef;
+  @ViewChild("l", { static: true }) element_login: NgForm;
 
   constructor(private authService: Authservice) {}
 
   ngOnInit() {}
 
   onLogin() {
-    this.authService.login(
-      this.element_email.nativeElement.value,
-      this.element_pass.nativeElement.value
-    );
+    // this.authService.login(
+    //   this.element_email.nativeElement.value,
+    //   this.element_pass.nativeElement.value
+    // );
+
+    console.log(this.element_login);
   }
 }

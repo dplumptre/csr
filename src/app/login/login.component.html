@@ -10,15 +10,24 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                <form class="user">
+                <form class="user" (ngSubmit)="onLogin()" #l="ngForm">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" 
-                      id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." #email>
+                      id="exampleInputEmail" aria-describedby="emailHelp" name="email" placeholder="Enter Email Address..."
+                   ngModel required email #email="ngModel">
                     </div>
+            
+
+             <div *ngIf="!email.valid && email.touched" class="response text-danger">Please Enter valid email</div> 
+
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" 
-                      placeholder="Password" #password>
+                      placeholder="Password" name="password" ngModel required #password="ngModel">
                     </div>
+
+               <div *ngIf="!password.valid && password.touched" class="response text-danger" >Please Enter password</div> 
+
+
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -26,9 +35,9 @@
                       </div>
                     </div>
 <div class="submit">
-                    <a  (click)="onLogin()" class="btn btn-primary btn-user btn-block">
+                    <button [disabled]="!l.valid && l.touched" type="submit" class="btn btn-primary btn-user btn-block">
                       Login
-                    </a>
+                    </button>
 </div>
           
                   </form>

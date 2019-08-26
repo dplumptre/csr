@@ -8,24 +8,22 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./register.component.css"]
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild("name", { static: true }) element_name: ElementRef;
-  @ViewChild("email", { static: true }) element_email: ElementRef;
-  @ViewChild("password1", { static: true }) element_pass1: ElementRef;
-  @ViewChild("password2", { static: true }) element_pass2: ElementRef;
+  @ViewChild("f", { static: true }) element_all: NgForm;
 
   constructor(private authService: Authservice) {}
 
   ngOnInit() {}
 
-  onRegister() {
-    this.authService.register(
-      this.element_name.nativeElement.value,
-      this.element_email.nativeElement.value,
-      this.element_pass1.nativeElement.value
-    );
+  onSubmit() {
+    // this.authService.register(
+    //   this.element_name.nativeElement.value,
+    //   this.element_email.nativeElement.value,
+    //   this.element_pass1.nativeElement.value
+    // );
+    console.log(this.element_all);
   }
 
-  onSub(form: NgForm) {
-    console.log(form);
-  }
+  // onSub(form: NgForm) {
+  //   console.log(form);
+  // }
 }

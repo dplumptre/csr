@@ -2,3 +2,12 @@
 .submit > a {
   color: #eeeeee !important;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.response {
+  font-size: 11;
+  font-style: italic;
+}
