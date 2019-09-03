@@ -18,6 +18,12 @@ import { DataCreateComponent } from "./data/data-create/data-create.component";
 import { NavComponent } from "./nav/nav.component";
 import { Authservice } from "./services/authservice";
 import { FormsModule } from "@angular/forms";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DownloadComponent } from './download/download.component';
+import { DepartmentComponent } from './department/department.component';
+import { DepartmentsComponent } from './departments/departments.component';
+import { DepartmentListComponent } from './departments/department-list/department-list.component';
+import { DepartmentCreateComponent } from './departments/department-create/department-create.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,13 @@ import { FormsModule } from "@angular/forms";
     DataListComponent,
     DataDetailComponent,
     DataCreateComponent,
-    NavComponent
+    NavComponent,
+    DashboardComponent,
+    DownloadComponent,
+    DepartmentComponent,
+    DepartmentsComponent,
+    DepartmentListComponent,
+    DepartmentCreateComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [Authservice],
