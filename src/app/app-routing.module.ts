@@ -7,6 +7,8 @@ import { ReportComponent } from "./report/report.component";
 import { DataComponent } from "./data/data.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { DepartmentsComponent } from "./departments/departments.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -15,7 +17,10 @@ const routes: Routes = [
   { path: "report", component: ReportComponent },
   { path: "data", component: DataComponent },
   { path: "departments", component: DepartmentsComponent },
-  { path: "dashboard", component: DashboardComponent }
+  { path: "dashboard", component: DashboardComponent },
+  { path: "beneficiaries", component: BeneficiariesComponent },
+  { path: "page-not-found", component: PageNotFoundComponent },
+  { path: "**", redirectTo: "/page-not-found" }
 ];
 
 @NgModule({

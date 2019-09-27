@@ -1,0 +1,78 @@
+
+
+
+              <!-- Area Chart -->
+              <div class="card shadow mb-4">
+
+
+                    <div class="card-header py-3">
+                       <h6 class="m-0 font-weight-bold text-primary"> </h6>
+                    </div>
+
+
+
+
+                 <div class="card-body">
+                
+
+                  <div *ngIf="!f.valid && f.touched" class="alert alert-danger">Please enter required fields</div>       
+                <form class="user"(ngSubmit)="onCreateBen()" #f="ngForm">
+                 <div class="form-group">
+                 <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Full Name" 
+                 ngModel  name="name" required>
+                 </div>
+                
+                 <div class="form-group">
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" ngModel
+                   name="email" required email>
+                 </div>
+
+                 <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                   placeholder="Phone" ngModel
+                   name="phone" required>
+                 </div>
+
+                 <div class="form-group">
+                  <input type="text" class="form-control form-control-user" 
+                   placeholder="Age" ngModel
+                   name="age" required>
+                 </div>
+
+                 <div class="form-group">
+                  <input type="text" class="form-control form-control-user" 
+                   placeholder="Address" ngModel
+                   name="address" required>
+                 </div>
+
+                  
+                   <div class="form-group">
+                   <input type="text" class="form-control form-control-user" 
+                   placeholder="Reason" ngModel
+                   name="reason" required>
+                 </div>
+
+                   <div class="form-group">
+                   <input type="text" class="form-control form-control-user" 
+                   placeholder="Approval Person" ngModel
+                   name="approved_person" required>
+                 </div>
+
+                 <div class="form-group">
+                   <input type="text" class="form-control form-control-user" 
+                   placeholder="Comments" ngModel
+                   name="comments" required>
+                 </div>
+                 
+
+<div class="submit">
+<button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Create Beneficiary</button>
+</div>
+</form>
+<hr>
+</div>
+</div>
+
+           
+        
+ 

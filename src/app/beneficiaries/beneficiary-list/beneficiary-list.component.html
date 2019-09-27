@@ -1,0 +1,38 @@
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Users</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table    class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Department</th>
+                      <th>Approved Person</th>
+                       <th></th>
+                       <th></th>
+                        <th></th>
+                    </tr>
+                  </thead>
+              
+                  <tbody>
+                    <tr  *ngFor="let bene of  beneficiaries"  >
+                      <td>{{ bene.name}}</td>
+                      <td>{{ bene.phone}}</td>
+                      <td>{{ bene.email}}</td>
+                      <td>{{ bene.department_id}}</td>
+                      <td>{{bene.approved_person }}</td>
+                      <td><button class="btn btn-primary">view</button></td>
+                      <td><button class="btn btn-warning">edit</button></td>
+                      <td><button class="btn btn-danger">delete</button></td>
+                    </tr>
+
+       
+                </table>
+              </div>
+            </div>
+          </div>

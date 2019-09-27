@@ -18,12 +18,19 @@ import { DataCreateComponent } from "./data/data-create/data-create.component";
 import { NavComponent } from "./nav/nav.component";
 import { Authservice } from "./services/authservice";
 import { FormsModule } from "@angular/forms";
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DownloadComponent } from './download/download.component';
-import { DepartmentComponent } from './department/department.component';
-import { DepartmentsComponent } from './departments/departments.component';
-import { DepartmentListComponent } from './departments/department-list/department-list.component';
-import { DepartmentCreateComponent } from './departments/department-create/department-create.component';
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { DownloadComponent } from "./download/download.component";
+import { DepartmentsComponent } from "./departments/departments.component";
+import { DepartmentListComponent } from "./departments/department-list/department-list.component";
+import { DepartmentCreateComponent } from "./departments/department-create/department-create.component";
+import { HttpClientModule } from "@angular/common/http";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
+import { AllBeneficiariesComponent } from "./all-beneficiaries/all-beneficiaries.component";
+import { AllBeneficiariesListComponent } from "./all-beneficiaries/all-beneficiaries-list/all-beneficiaries-list.component";
+import { BeneficiaryListComponent } from './beneficiaries/beneficiary-list/beneficiary-list.component';
+import { BeneficiaryDetailComponent } from './beneficiaries/beneficiary-detail/beneficiary-detail.component';
+import { BeneficiaryEditComponent } from './beneficiaries/beneficiary-edit/beneficiary-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,12 +50,18 @@ import { DepartmentCreateComponent } from './departments/department-create/depar
     NavComponent,
     DashboardComponent,
     DownloadComponent,
-    DepartmentComponent,
     DepartmentsComponent,
     DepartmentListComponent,
-    DepartmentCreateComponent
+    DepartmentCreateComponent,
+    PageNotFoundComponent,
+    BeneficiariesComponent,
+    AllBeneficiariesComponent,
+    AllBeneficiariesListComponent,
+    BeneficiaryListComponent,
+    BeneficiaryDetailComponent,
+    BeneficiaryEditComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [Authservice],
   bootstrap: [AppComponent]
 })

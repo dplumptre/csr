@@ -12,15 +12,26 @@
               </div>
        
                <div *ngIf="!f.valid && f.touched" class="alert alert-danger">Please enter required fields</div>       
-              <form class="user"(ngSubmit)="onSubmit()" #f="ngForm">
-                <div class="form-group">
+                <form class="user"(ngSubmit)="onSubmit()" #f="ngForm">
+                 <div class="form-group">
                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Full Name" 
                  ngModel  name="name" required>
-                </div>
-                <div class="form-group">
+                 </div>
+                 <div class="form-group">
                   <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" ngModel
                    name="email" required email>
+                 </div>
+
+
+              <div class="form-group">
+              <select placeholder="Departments" style="font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;"  ngModel name="department" class="form-control" id="departments" required>
+              <option *ngFor="let department of departments; let i = index" [value]="department.id">
+              {{department.name}}
+              </option>
+              </select>
                 </div>
+
+
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" ngModel 

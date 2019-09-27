@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { Authservice } from "../services/authservice";
 import { NgForm } from "@angular/forms";
+import { DepartmentService } from "../services/department.service";
+import { Department } from "../models/department";
 
 @Component({
   selector: "app-register",
@@ -9,10 +11,18 @@ import { NgForm } from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
   @ViewChild("f", { static: true }) element_all: NgForm;
+  departments: Department[] = [];
 
-  constructor(private authService: Authservice) {}
+  constructor(
+    private authService: Authservice,
+    private departmentService: DepartmentService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.departmentService.getDepartment().subscribe(Response => {
+      this.departments = Response;
+    });
+  }
 
   onSubmit() {
     // this.authService.register(
