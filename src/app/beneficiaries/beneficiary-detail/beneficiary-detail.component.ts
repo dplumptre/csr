@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BenficiaryService } from 'src/app/services/benficiary.service';
+import { Beneficiary } from 'src/app/models/beneficiary';
 
 @Component({
   selector: 'app-beneficiary-detail',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BeneficiaryDetailComponent implements OnInit {
 
-  constructor() { }
+  user: Beneficiary;
+  myid: number;
+
+  constructor(private beneficiary: BenficiaryService) { }
 
   ngOnInit() {
+    
+    // this.beneficiary.singleBenId.subscribe( id =>{
+    //   this.myid = id;
+    // })
+
+    // this.beneficiary.getSingleBeneficiary(1).subscribe( myuser =>{
+    //   this.user = myuser;
+    //   console.log(myuser);
+    //  })
+
+ 
+
+
   }
+
+
+getId(){
+
+}
+
 
 }
