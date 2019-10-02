@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ConstantService } from "./constant.service";
-import { Benficiary } from "../models/benficiary";
+import { Beneficiary } from "../models/beneficiary";
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +10,7 @@ export class BenficiaryService {
   constructor(private http: HttpClient, private konst: ConstantService) {}
 
   getBeneficiary() {
-    return this.http.get(this.konst.apiURL + "beneficiaries");
+    return this.http.get<Beneficiary[]>(this.konst.apiURL + "beneficiaries");
   }
 
   // onAddIng(Values: Ingredient) {
@@ -18,7 +18,7 @@ export class BenficiaryService {
   //   this.ing_val.emit(this.ingredients.slice());
   // }
 
-  createBeneficiary(ben: Benficiary) {
-    //  return this.http.post();
-  }
+  // createBeneficiary(ben: Benficiary) {
+  //   //  return this.http.post();
+  // }
 }

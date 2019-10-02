@@ -1,4 +1,4 @@
-export class Benficiary {
+export class Beneficiary {
   constructor(
     public id: number,
     public name: string,
