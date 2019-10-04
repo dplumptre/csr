@@ -1,39 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { BenficiaryService } from 'src/app/services/benficiary.service';
-import { Beneficiary } from 'src/app/models/beneficiary';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { BenficiaryService } from "src/app/services/benficiary.service";
+import { Beneficiary } from "src/app/models/beneficiary";
+import { Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-beneficiary-detail',
-  templateUrl: './beneficiary-detail.component.html',
-  styleUrls: ['./beneficiary-detail.component.css']
+  selector: "app-beneficiary-detail",
+  templateUrl: "./beneficiary-detail.component.html",
+  styleUrls: ["./beneficiary-detail.component.css"]
 })
 export class BeneficiaryDetailComponent implements OnInit {
-
   user: Beneficiary;
-  myid: number;
+  sub: Subscription;
 
-  constructor(private beneficiary: BenficiaryService) { }
+  constructor(private beneficiary: BenficiaryService) {}
 
   ngOnInit() {
-    
-    // this.beneficiary.singleBenId.subscribe( id =>{
-    //   this.myid = id;
-    // })
-
-    // this.beneficiary.getSingleBeneficiary(1).subscribe( myuser =>{
-    //   this.user = myuser;
-    //   console.log(myuser);
-    //  })
-
- 
-
-
+    this.beneficiary.singleBen.subscribe(data => {
+      this.user = data;
+      // this.user  = JSON.stringify(data);
+      console.log(this.user);
+    });
   }
-
-
-getId(){
-
-}
-
-
 }

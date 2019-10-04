@@ -4,10 +4,58 @@
                     <div class="card-header py-3">
                        <h6 class="m-0 font-weight-bold text-primary">User Detail</h6>
                     </div>
-                 <div class="card-body">
-                     {{ myid }}
-                  {{ user }}
-                    <hr>
+                 <div *ngIf="user"class="card-body">
+
+
+
+
+<table class="table">
+
+    <tbody>
+      <tr>
+        <td>NAME: </td>
+        <td>{{user.name }}</td>
+      </tr>
+      <tr>
+        <td>AGE: </td>
+        <td> {{user.age }}</td>
+      </tr>
+      <tr>
+        <td>PHONE: </td>
+        <td>{{user.phone }}</td>
+      </tr>
+      <tr>
+        <td>EMAIL:   </td>
+        <td>{{user.email }}</td>
+      </tr>
+      <tr>
+        <td>NATURE:</td>
+        <td>{{user.nature }}</td>
+      </tr>
+      <tr>
+        <td>ADDRESS:  </td>
+        <td>{{user.address }}</td>
+      </tr>
+      <tr>
+        <td>DEPARTMENT:  </td>
+        <td>{{user.departments.name }}</td>
+      </tr>
+       <tr>
+        <td>APPROVED PERSON: </td>
+        <td>{{user.approved_person }}</td>
+      </tr>
+      <tr>
+        <td>COMMENTS:  </td>
+        <td>{{user.comments }}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+
+
+
                  </div>
               </div>
           

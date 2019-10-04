@@ -28,9 +28,18 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
 import { AllBeneficiariesComponent } from "./all-beneficiaries/all-beneficiaries.component";
 import { AllBeneficiariesListComponent } from "./all-beneficiaries/all-beneficiaries-list/all-beneficiaries-list.component";
-import { BeneficiaryListComponent } from './beneficiaries/beneficiary-list/beneficiary-list.component';
-import { BeneficiaryDetailComponent } from './beneficiaries/beneficiary-detail/beneficiary-detail.component';
-import { BeneficiaryEditComponent } from './beneficiaries/beneficiary-edit/beneficiary-edit.component';
+import { BeneficiaryListComponent } from "./beneficiaries/beneficiary-list/beneficiary-list.component";
+import { BeneficiaryDetailComponent } from "./beneficiaries/beneficiary-detail/beneficiary-detail.component";
+import { BeneficiaryEditComponent } from "./beneficiaries/beneficiary-edit/beneficiary-edit.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatTableModule } from "@angular/material/table";
+import { MatButtonModule } from "@angular/material/button";
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule
+} from "@angular/material";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -61,8 +70,21 @@ import { BeneficiaryEditComponent } from './beneficiaries/beneficiary-edit/benef
     BeneficiaryDetailComponent,
     BeneficiaryEditComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [Authservice],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatDialogModule
+  ],
+  providers: [Authservice, { provide: MatDialogRef, useValue: {} }],
+  bootstrap: [AppComponent],
+  entryComponents: [BeneficiaryEditComponent]
 })
 export class AppModule {}

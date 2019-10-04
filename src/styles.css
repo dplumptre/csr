@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .submit > a {
   color: #eeeeee !important;
 }
@@ -10,4 +12,13 @@ input.ng-invalid.ng-touched {
 .response {
   font-size: 11;
   font-style: italic;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
