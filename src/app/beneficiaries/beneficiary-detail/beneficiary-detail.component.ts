@@ -18,7 +18,7 @@ export class BeneficiaryDetailComponent implements OnInit {
     this.beneficiary.singleBen.subscribe(data => {
       this.user = data;
       // this.user  = JSON.stringify(data);
-      console.log(this.user);
+      //console.log(this.user);
     });
   }
 }

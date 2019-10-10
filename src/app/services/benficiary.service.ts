@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConstantService } from "./constant.service";
 import { Beneficiary } from "../models/beneficiary";
 import { Subject } from "rxjs";
@@ -11,7 +11,7 @@ export class BenficiaryService {
   constructor(private http: HttpClient, private konst: ConstantService) {}
 
   singleBen = new Subject<Beneficiary>();
-
+  updateNewBeneficiaryEntry = new Subject<Beneficiary[]>(); // update beneficiary anytime theres an entry
   singleBenId = new Subject<number>();
 
   getBeneficiary() {
@@ -24,12 +24,25 @@ export class BenficiaryService {
     );
   }
 
-  // onAddIng(Values: Ingredient) {
-  //   this.ingredients.push(Values);
-  //   this.ing_val.emit(this.ingredients.slice());
-  // }
+  deleteBeneficiary(ben: number) {
+    this.http
+      .delete<Beneficiary>(this.konst.apiURL + "delete-beneficiary/" + ben)
+      .subscribe(response => {
+        console.log(response);
+        this.getBeneficiary().subscribe(data => {
+          this.updateNewBeneficiaryEntry.next(data);
+        });
+      });
+  }
 
   createBeneficiary(ben: Beneficiary) {
-    //  return this.http.post();
+    return this.http.post<Beneficiary>(
+      this.konst.apiURL + "create-beneficiary",
+      ben
+    );
+  }
+
+  updateBeneficiary(ben: Beneficiary, id: number) {
+    return this.http.put(this.konst.apiURL + "update-beneficiary/" + id, ben);
   }
 }

@@ -3,59 +3,36 @@ import { NgForm } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { BenficiaryService } from "src/app/services/benficiary.service";
 import { Subscription } from "rxjs";
-import { Beneficiary } from "src/app/models/beneficiary";
-
 @Component({
-  selector: "app-beneficiary-edit",
-  templateUrl: "./beneficiary-edit.component.html",
-  styleUrls: ["./beneficiary-edit.component.css"]
+  selector: "app-beneficiary-create",
+  templateUrl: "./beneficiary-create.component.html",
+  styleUrls: ["./beneficiary-create.component.css"]
 })
-export class BeneficiaryEditComponent implements OnInit, OnDestroy {
+export class BeneficiaryCreateComponent implements OnInit {
   constructor(
-    public dialogRef: MatDialogRef<BeneficiaryEditComponent>,
+    public dialogRef: MatDialogRef<BeneficiaryCreateComponent>,
     private beneficiaryService: BenficiaryService
   ) {}
 
   // showForm = false;
 
-  @ViewChild("f", { static: true }) element_edit: NgForm;
-  unsubcribeSingleBen: Subscription;
+  @ViewChild("f", { static: true }) element_create: NgForm;
+
   result: [] = [];
   responseData: any = {};
   success: string = "";
-  singleBenId: number;
+  dept: number = 2;
   isLoading = false;
-  singleBen: Beneficiary;
 
   ngOnInit() {
-    // this.dept;
-
-    this.unsubcribeSingleBen = this.beneficiaryService.singleBen.subscribe(
-      data => {
-        //console.log(data);
-        this.singleBen = data;
-        this.element_edit.setValue({
-          name: this.singleBen.name,
-          age: this.singleBen.age,
-          phone: this.singleBen.phone,
-          address: this.singleBen.address,
-          email: this.singleBen.email,
-          reason: this.singleBen.reason,
-          nature: this.singleBen.nature,
-          comments: this.singleBen.comments,
-          department_id: this.singleBen.department_id,
-
-          approved_person: this.singleBen.approved_person
-        });
-      }
-    );
+    this.dept;
   }
 
-  onEditBen() {
-    //console.log(this.singleBen.id + " lets hear");
+  onCreateBen() {
     this.isLoading = true;
+    // console.log(this.element_create.value);
     this.beneficiaryService
-      .updateBeneficiary(this.element_edit.value, this.singleBen.id)
+      .createBeneficiary(this.element_create.value)
       .subscribe(
         resp => {
           this.isLoading = false;
@@ -67,6 +44,7 @@ export class BeneficiaryEditComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.dialogRef.close();
           }, 2000);
+
           // this is to update the recently added entry
           this.beneficiaryService.getBeneficiary().subscribe(data => {
             // console.log(data);
@@ -79,10 +57,6 @@ export class BeneficiaryEditComponent implements OnInit, OnDestroy {
           // console.log(error.error.result);
         }
       );
-  }
-
-  ngOnDestroy() {
-    this.unsubcribeSingleBen.unsubscribe();
   }
 
   onNoClick(): void {

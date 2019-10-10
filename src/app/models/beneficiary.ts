@@ -9,6 +9,7 @@ export class Beneficiary {
     public approved_person: string,
     public address: string,
     public reason: string,
+    public nature: string,
     public department_id: string,
     public created_at: string,
     public updated_at: string

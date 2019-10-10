@@ -40,6 +40,8 @@ import {
   MatPaginatorModule
 } from "@angular/material";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { BenficiaryService } from "./services/benficiary.service";
+import { BeneficiaryCreateComponent } from "./beneficiaries/beneficiary-create/beneficiary-create.component";
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
     AllBeneficiariesListComponent,
     BeneficiaryListComponent,
     BeneficiaryDetailComponent,
-    BeneficiaryEditComponent
+    BeneficiaryEditComponent,
+    BeneficiaryCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -83,8 +86,12 @@ import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
     MatPaginatorModule,
     MatDialogModule
   ],
-  providers: [Authservice, { provide: MatDialogRef, useValue: {} }],
+  providers: [
+    Authservice,
+    BenficiaryService,
+    { provide: MatDialogRef, useValue: {} }
+  ],
   bootstrap: [AppComponent],
-  entryComponents: [BeneficiaryEditComponent]
+  entryComponents: [BeneficiaryEditComponent, BeneficiaryCreateComponent]
 })
 export class AppModule {}

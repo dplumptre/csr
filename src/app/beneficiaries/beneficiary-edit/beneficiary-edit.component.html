@@ -12,74 +12,94 @@
 
 
 
-                 <div class="card-body">
+          <div class="card-body">
 
           
-                
 
-                 <!-- <div *ngIf="!f.valid && f.touched" class="alert alert-danger">Please enter required fields</div>  -->      
-                <form class="user"(ngSubmit)="onCreateBen()" #f="ngForm">
-                 <div class="form-group">
-                 <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Full Name" 
-                 ngModel  name="name" required>
-                 </div>
-                
-                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" ngModel
-                   name="email" required email>
-                 </div>
 
-                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                   placeholder="Phone" ngModel
-                   name="phone" required>
-                 </div>
 
-                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" 
-                   placeholder="Age" ngModel
-                   name="age" required>
-                 </div>
-
-                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" 
-                   placeholder="Address" ngModel
-                   name="address" required>
-                 </div>
-
-                  
-                   <div class="form-group">
-                   <input type="text" class="form-control form-control-user" 
-                   placeholder="Reason" ngModel
-                   name="reason" required>
-                 </div>
-
-                   <div class="form-group">
-                   <input type="text" class="form-control form-control-user" 
-                   placeholder="Approval Person" ngModel
-                   name="approved_person" required>
-                 </div>
-
-                 <div class="form-group">
-                   <input type="text" class="form-control form-control-user" 
-                   placeholder="Comments" ngModel
-                   name="comments" required>
-                 </div>
+                          <!-- <div *ngIf="!f.valid && f.touched" class="alert alert-danger">Please enter required fields</div>  -->      
+                      <form class="user"(ngSubmit)="onEditBen()" #f="ngForm">
+                        <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Full Name" 
+                        ngModel  name="name" required>
+                        </div>
+                        <div class="form-group">
+                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" ngModel
+                          name="email" required email>
+                        </div>
+                        <div class="form-group">
+                        <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                          placeholder="Phone" ngModel
+                          name="phone" required>
+                        </div>
+                        <div class="form-group">
+                        <input type="text" class="form-control form-control-user" 
+                          placeholder="Age" ngModel
+                          name="age" required>
+                        </div>
+                        <div class="form-group">
+                        <input type="text" class="form-control form-control-user" 
+                          placeholder="Address" ngModel
+                          name="address" required>
+                        </div>  
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" 
+                          placeholder="Reason" ngModel
+                          name="reason" required>
+                        </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" 
+                          placeholder="Nature" ngModel
+                          name="nature" required>
+                        </div>
+                      <div class="form-group">
+                          <input type="text" class="form-control form-control-user" 
+                          placeholder="Approval Person" ngModel
+                          name="approved_person" required>
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-control form-control-user" 
+                          placeholder="Comments" ngModel
+                          name="comments" >
+                        </div>       
+                        <div class="form-group">
+                          <input type="hidden" 
+                          placeholder="Department" ngModel 
+                          name="department_id" required>
+                        </div>   
+                        <div class="alert alert-danger" role="alert" *ngIf="result.length > 0" >
+                        <h4 class="alert-heading">An Error occurred</h4>
+                        <ul >
+                          <li *ngFor="let r of result">{{r}}</li>
+                        </ul> 
+                        </div>
+                        <div class="alert alert-success" role="alert" *ngIf="success.length > 0" >
+                        <p>{{ success}}</p> 
+                        </div>
+                          <div *ngIf="isLoading">
+                          loading...
+                          </div>
+                      <div class="submit">
+                      <button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Edit Beneficiary</button>
+                      </div>
+                      </form>
                  
 
-<div class="submit">
-<button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Create Beneficiary</button>
-</div>
-</form>
+              
 
 
-<hr>
-<div mat-dialog-actions>
-  <button class="btn btn-danger"[mat-dialog-close] (click)="onNoClick()">close</button>
-  
-</div>
-</div>
-</div>
+
+
+
+
+      <hr>
+      <div mat-dialog-actions>
+        <button class="btn btn-danger"[mat-dialog-close] (click)="onNoClick()">close</button>
+        
+      </div>
+      </div>
+      </div>
 
            
         
