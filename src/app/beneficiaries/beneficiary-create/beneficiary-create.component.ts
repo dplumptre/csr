@@ -3,6 +3,8 @@ import { NgForm } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
 import { BenficiaryService } from "src/app/services/benficiary.service";
 import { Subscription } from "rxjs";
+import { DepartmentService } from "src/app/services/department.service";
+import { Department } from "src/app/models/department";
 @Component({
   selector: "app-beneficiary-create",
   templateUrl: "./beneficiary-create.component.html",
@@ -11,7 +13,8 @@ import { Subscription } from "rxjs";
 export class BeneficiaryCreateComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<BeneficiaryCreateComponent>,
-    private beneficiaryService: BenficiaryService
+    private beneficiaryService: BenficiaryService,
+    private departmentService: DepartmentService
   ) {}
 
   // showForm = false;
@@ -23,9 +26,16 @@ export class BeneficiaryCreateComponent implements OnInit {
   success: string = "";
   dept: number = 2;
   isLoading = false;
+  departments: Department[] = [];
+  admin: boolean = false;
 
   ngOnInit() {
     this.dept;
+    this.admin = false; // this will be true or false depending on the admin privilege
+
+    this.departmentService.getDepartment().subscribe(Response => {
+      this.departments = Response;
+    });
   }
 
   onCreateBen() {

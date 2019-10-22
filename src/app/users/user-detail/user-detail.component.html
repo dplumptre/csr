@@ -4,11 +4,58 @@
                     <div class="card-header py-3">
                        <h6 class="m-0 font-weight-bold text-primary">User Detail</h6>
                     </div>
-                 <div class="card-body">
-                   <div class="chart-area">
-                       <canvas id="myAreaChart"></canvas>
-                   </div>
-                    <hr>
+                  <div *ngIf="user"class="card-body">
+
+
+
+
+
+
+<table class="table">
+
+    <tbody>
+      <tr>
+        <td>NAME: </td>
+        <td>{{user.name }}</td>
+      </tr>
+      <tr>
+        <td>PHONE: </td>
+        <td>{{user.phone }}</td>
+      </tr>
+      <tr>
+        <td>EMAIL:   </td>
+        <td>{{user.email }}</td>
+      </tr>
+      <tr>
+        <td>DEPARTMENT:  </td>
+        <td>{{user.departments.name }}</td>
+      </tr>
+       <tr>
+        <td>ROLE: </td>
+        <td> 
+        <ul>
+        <li *ngFor=" let rol of user.roles ">
+        {{rol.role}}
+        </li>
+        </ul>
+        
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+
+
+
+
                  </div>
               </div>
           

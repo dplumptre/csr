@@ -42,6 +42,7 @@ import {
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { BenficiaryService } from "./services/benficiary.service";
 import { BeneficiaryCreateComponent } from "./beneficiaries/beneficiary-create/beneficiary-create.component";
+import { UserCreateComponent } from './users/user-create/user-create.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { BeneficiaryCreateComponent } from "./beneficiaries/beneficiary-create/b
     BeneficiaryListComponent,
     BeneficiaryDetailComponent,
     BeneficiaryEditComponent,
-    BeneficiaryCreateComponent
+    BeneficiaryCreateComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,
