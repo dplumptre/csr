@@ -1,1 +1,110 @@
-<p>user-create works!</p>
+
+
+
+              <!-- Area Chart -->
+              <div class="card shadow mb-4" >
+
+
+                    <div class="card-header py-3">
+                       <h6 class="m-0 font-weight-bold text-primary"> </h6>
+                    </div>
+
+
+
+
+          <div class="card-body">
+
+          
+                
+
+                        <!--#####################################
+                        
+                        SHOW FORM CREATE
+                        
+                        ###3-->
+
+                   
+                      <!-- <div *ngIf="!f.valid && f.touched" class="alert alert-danger">Please enter required fields</div>  -->      
+ <form class="user"(ngSubmit)="onSubmit()" #f="ngForm">
+ <label for="">Full Name</label>
+                 <div class="form-group">
+                 <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Full Name" 
+                 ngModel  name="name" required>
+                 </div>
+                 <label for="">Email</label>
+                 <div class="form-group">
+                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" ngModel
+                   name="email" required email>
+                 </div>
+<label for="">Phone</label>
+                 <div class="form-group">
+                 <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Phone" 
+                 ngModel  name="phone" required>
+                 </div>          
+
+<label for="">Department</label>
+              <div class="form-group">
+              <select placeholder="Departments" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;" 
+               ngModel name="department_id" class="form-control" id="departments" required>
+              <option *ngFor="let department of departments; let i = index" [value]="department.id">
+              {{department.name}}
+              </option>
+              </select>
+                </div>
+<label for="">Role</label>
+                <div class="form-group">
+              <select placeholder="Role" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;" 
+               ngModel name="role" class="form-control" id="role" required>        
+              <option  value="user">User</option>
+              <option  value="admin">Admin</option>
+              </select>
+                </div>
+
+
+
+                  <div class="alert alert-danger" role="alert" *ngIf="result.length>2" >
+                  <h4 class="alert-heading">An Error occurred</h4>
+                  <ul >
+                   <li *ngFor="let r of result">{{r}}</li>
+                 </ul> 
+                  </div>
+                 <div class="alert alert-success" role="alert" *ngIf="success" >
+                  <p>{{ success}}</p> 
+                  </div>
+                  <div *ngIf="isLoading">
+                    loading...
+                  </div>
+
+<div class="submit">
+                   
+ <button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Register Account</button>
+</div>
+</form>
+
+
+
+
+
+                 
+
+
+
+             
+
+
+
+
+
+
+
+      <hr>
+      <div mat-dialog-actions>
+        <button class="btn btn-danger"[mat-dialog-close] (click)="onNoClick()">close</button>
+        
+      </div>
+      </div>
+      </div>
+
+           
+        
+ 

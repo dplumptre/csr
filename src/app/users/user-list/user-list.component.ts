@@ -10,6 +10,8 @@ import {
 } from "@angular/material/dialog";
 import { User } from "src/app/models/user";
 import { Subscription } from "rxjs";
+import { UserCreateComponent } from "../user-create/user-create.component";
+import { UserEditComponent } from "../user-edit/user-edit.component";
 
 @Component({
   selector: "app-user-list",
@@ -40,11 +42,11 @@ export class UserListComponent implements OnInit {
       this.users.sort = this.sort;
     });
     // this is to update the recently added entry
-    // this.the_data = this.usersService.updateNewuserEntry.subscribe(res => {
-    //   this.users = new MatTableDataSource(res);
-    //   this.users.paginator = this.paginator;
-    //   this.users.sort = this.sort;
-    // });
+    this.the_data = this.usersService.updateNewUserEntry.subscribe(res => {
+      this.users = new MatTableDataSource(res);
+      this.users.paginator = this.paginator;
+      this.users.sort = this.sort;
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -59,5 +61,33 @@ export class UserListComponent implements OnInit {
     this.usersService.getSingleUser(ben).subscribe(myuser => {
       this.usersService.singleUser.next(myuser);
     });
+  }
+
+  addUser() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    this.dialog.open(UserCreateComponent, dialogConfig);
+  }
+
+  editUser(id: number) {
+    this.usersService.getSingleUser(id).subscribe(myuser => {
+      this.usersService.singleUser.next(myuser);
+    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "70%";
+    this.dialog.open(UserEditComponent, dialogConfig);
+  }
+
+  delUser(id: number) {
+    var x = confirm("Are you sure you want to delete?");
+    if (x) {
+      this.usersService.deleteUser(id);
+    } else {
+      return false;
+    }
   }
 }

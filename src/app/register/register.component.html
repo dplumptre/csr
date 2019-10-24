@@ -24,7 +24,7 @@
 
 
               <div class="form-group">
-              <select placeholder="Departments" style="font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;"  ngModel name="department" class="form-control" id="departments" required>
+              <select placeholder="Departments" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;"  ngModel name="department" class="form-control" id="departments" required>
               <option *ngFor="let department of departments; let i = index" [value]="department.id">
               {{department.name}}
               </option>

@@ -42,7 +42,7 @@ import {
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { BenficiaryService } from "./services/benficiary.service";
 import { BeneficiaryCreateComponent } from "./beneficiaries/beneficiary-create/beneficiary-create.component";
-import { UserCreateComponent } from './users/user-create/user-create.component';
+import { UserCreateComponent } from "./users/user-create/user-create.component";
 
 @NgModule({
   declarations: [
@@ -94,6 +94,11 @@ import { UserCreateComponent } from './users/user-create/user-create.component';
     { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [BeneficiaryEditComponent, BeneficiaryCreateComponent]
+  entryComponents: [
+    BeneficiaryEditComponent,
+    BeneficiaryCreateComponent,
+    UserCreateComponent,
+    UserEditComponent
+  ]
 })
 export class AppModule {}
