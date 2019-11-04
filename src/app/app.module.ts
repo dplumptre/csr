@@ -43,6 +43,8 @@ import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { BenficiaryService } from "./services/benficiary.service";
 import { BeneficiaryCreateComponent } from "./beneficiaries/beneficiary-create/beneficiary-create.component";
 import { UserCreateComponent } from "./users/user-create/user-create.component";
+import { DepartmentReportComponent } from "./report/department-report/department-report.component";
+import { ComprehensiveReportComponent } from "./report/comprehensive-report/comprehensive-report.component";
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { UserCreateComponent } from "./users/user-create/user-create.component";
     BeneficiaryDetailComponent,
     BeneficiaryEditComponent,
     BeneficiaryCreateComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    DepartmentReportComponent,
+    ComprehensiveReportComponent
   ],
   imports: [
     BrowserModule,

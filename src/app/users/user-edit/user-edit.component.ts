@@ -14,13 +14,7 @@ import { DepartmentService } from "src/app/services/department.service";
 })
 export class UserEditComponent implements OnInit, OnDestroy {
   unsubcribesingleUser: Subscription;
-  singleUser: {
-    department_id: number;
-    email: string;
-    name: string;
-    phone: string;
-    role: string;
-  };
+  singleUser: User;
   departments: Department[] = [];
   success: string = "";
   isLoading = false;
@@ -41,18 +35,52 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
     this.unsubcribesingleUser = this.usersService.singleUser.subscribe(data => {
       this.singleUser = data;
+      console.log(this.singleUser.roles[0].slug);
+
       this.element_edit.setValue({
         name: this.singleUser.name,
         phone: this.singleUser.phone,
         email: this.singleUser.email,
-        role: "",
+        role: this.singleUser.roles[0].slug,
         department_id: this.singleUser.department_id
       });
     });
   }
 
   onSubmit() {
-    console.log(this.element_edit);
+    //console.log(this.element_edit.value.role);
+    this.usersService
+      .updateUser(this.element_edit.value, this.singleUser.id)
+      .subscribe(
+        resp => {
+          this.isLoading = false;
+          this.responseData = resp;
+
+          this.result = [];
+          if (this.responseData.success) {
+            this.success = this.responseData.success;
+
+            // update view after edit
+            this.usersService
+              .getSingleUser(this.singleUser.id)
+              .subscribe(myuser => {
+                this.usersService.singleUser.next(myuser);
+              });
+          }
+          setTimeout(() => {
+            this.dialogRef.close();
+          }, 2000);
+          // this is to update the recently added entries
+          this.usersService.getUsers().subscribe(data => {
+            this.usersService.updateNewUserEntry.next(data);
+          });
+        },
+        error => {
+          this.result = error.error.result;
+          console.log(error.error);
+          // console.log(error.error.result);
+        }
+      );
   }
 
   ngOnDestroy() {

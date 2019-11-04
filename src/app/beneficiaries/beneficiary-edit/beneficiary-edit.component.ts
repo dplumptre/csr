@@ -63,6 +63,12 @@ export class BeneficiaryEditComponent implements OnInit, OnDestroy {
           this.result = [];
           if (this.responseData.success) {
             this.success = this.responseData.success;
+            // update view edit on page
+            this.beneficiaryService
+              .getSingleBeneficiary(this.singleBen.id)
+              .subscribe(myuser => {
+                this.beneficiaryService.singleBen.next(myuser);
+              });
           }
           setTimeout(() => {
             this.dialogRef.close();

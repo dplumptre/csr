@@ -45,14 +45,24 @@
                         </div>  
                       <div class="form-group">
                           <input type="text" class="form-control form-control-user" 
-                          placeholder="Reason" ngModel
+                          placeholder="Purpose for which Beneficiary is receiving support" ngModel
                           name="reason" required>
                         </div>
-                      <div class="form-group">
-                          <input type="text" class="form-control form-control-user" 
-                          placeholder="Nature" ngModel
-                          name="nature" required>
-                        </div>
+
+
+             <div class="form-group">
+              <select placeholder="Nature of Support" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;" 
+               ngModel name="nature" class="form-control" ng-selected="singleUser.nature" id="role" required>        
+              <option  value="One Off">One Off</option>
+              <option  value="Recurring Short Term">Recurring Short Term (up to a year)</option>
+               <option  value="Recurring Long Term">Recurring Long Term (More than a year)</option>
+              </select>
+                </div>
+
+
+
+
+
                       <div class="form-group">
                           <input type="text" class="form-control form-control-user" 
                           placeholder="Approval Person" ngModel
@@ -68,6 +78,9 @@
                           placeholder="Department" ngModel 
                           name="department_id" required>
                         </div>   
+
+
+                        
                         <div class="alert alert-danger" role="alert" *ngIf="result.length > 0" >
                         <h4 class="alert-heading">An Error occurred</h4>
                         <ul >

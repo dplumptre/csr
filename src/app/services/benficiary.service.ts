@@ -45,4 +45,24 @@ export class BenficiaryService {
   updateBeneficiary(ben: Beneficiary, id: number) {
     return this.http.put(this.konst.apiURL + "update-beneficiary/" + id, ben);
   }
+
+  downloadAllBeneficiary() {
+    return this.http.get(this.konst.apiURL + "export-all-ben", {
+      headers: new HttpHeaders({
+        Authorization: "{data}",
+        "Content-Type": "application/json"
+      }),
+      responseType: "blob"
+    });
+  }
+
+  exportBenByDept(id: number) {
+    return this.http.get(this.konst.apiURL + "export-all-ben_by_dept/" + id, {
+      headers: new HttpHeaders({
+        Authorization: "{data}",
+        "Content-Type": "application/json"
+      }),
+      responseType: "blob"
+    });
+  }
 }

@@ -30,7 +30,7 @@
               <div class="form-group">
               <select placeholder="Departments" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;" 
                ngModel name="department_id" class="form-control" id="departments" required>
-              <option *ngFor="let department of departments; let i = index" [value]="department.id">
+              <option *ngFor="let department of departments; let i = index"  ng-selected="singleUser.department_id" [value]="department.id">
               {{department.name}}
               </option>
               </select>
@@ -38,7 +38,7 @@
 <label for="">Role</label>
                 <div class="form-group">
               <select placeholder="Role" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;" 
-               ngModel name="role" class="form-control" id="role" required>        
+               ngModel name="role" class="form-control" id="role" ng-selected="singleUser.roles[0].role" required>        
               <option  value="user">User</option>
               <option  value="admin">Admin</option>
               </select>

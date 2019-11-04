@@ -1,0 +1,95 @@
+           
+           
+
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 text-primary">Download Comprehensive Report</h6>
+        </div>
+      <div class="card-body">
+
+
+      <form class="user"(ngSubmit)="onGetAllBen()" #gab="ngForm">
+      <div class="submit">        
+      <button  class="btn btn-primary btn-user btn-block" type="submit"> Download </button>
+      </div>
+      </form>
+      <div class="alert alert-danger" role="alert" *ngIf="result.length>2" >
+      <h4 class="alert-heading">An Error occurred</h4>
+      <ul >
+      <li *ngFor="let r of result">{{r}}</li>
+      </ul> 
+      </div>
+      <br>
+      <div class="alert alert-success" role="alert" *ngIf="success" >
+      <p>Comprehensive report downloaded successfully!</p> 
+      </div>
+      <div *ngIf="isLoading">
+      loading...
+      </div>
+
+      </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                       <h6 class="m-0 text-primary">Download Report By Department</h6>
+                    </div>
+                  <div class="card-body">
+
+
+
+
+ <form class="user"(ngSubmit)="onSubmit()" #f="ngForm">
+     
+
+<label for="">Department</label>
+              <div class="form-group">
+              <select placeholder="Departments" style="color:#666;font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;" 
+               ngModel name="department_id" class="form-control" id="departments" required>
+              <option *ngFor="let department of departments; let i = index" [value]="department.id">
+              {{department.name}}
+              </option>
+              </select>
+            </div>
+<div class="submit">                
+ <button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Download</button>
+</div>
+</form>
+      <div class="alert alert-danger" role="alert" *ngIf="result.length>2" >
+      <h4 class="alert-heading">An Error occurred</h4>
+      <ul >
+      <li *ngFor="let r of result">{{r}}</li>
+      </ul> 
+      </div>
+      <br>
+      <div class="alert alert-success" role="alert" *ngIf="successDept" >
+      <p>Report downloaded successfully!</p> 
+      </div>
+      <div *ngIf="isLoading">
+      loading...
+      </div>
+ </div>
+</div>
+
+
+
+
+
+

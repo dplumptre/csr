@@ -47,7 +47,16 @@ export class UsersService {
       });
   }
 
-  // updateBeneficiary(ben: Beneficiary, id: number) {
-  //   return this.http.put(this.konst.apiURL + "update-beneficiary/" + id, ben);
-  // }
+  updateUser(
+    user: {
+      name: string;
+      phone: string;
+      email: string;
+      department_id: number;
+      role: string;
+    },
+    id: number
+  ) {
+    return this.http.put(this.konst.apiURL + "update-user/" + id, user);
+  }
 }
