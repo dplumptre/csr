@@ -37,7 +37,8 @@ import { MatButtonModule } from "@angular/material/button";
 import {
   MatFormFieldModule,
   MatInputModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatNativeDateModule
 } from "@angular/material";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { BenficiaryService } from "./services/benficiary.service";
@@ -45,6 +46,11 @@ import { BeneficiaryCreateComponent } from "./beneficiaries/beneficiary-create/b
 import { UserCreateComponent } from "./users/user-create/user-create.component";
 import { DepartmentReportComponent } from "./report/department-report/department-report.component";
 import { ComprehensiveReportComponent } from "./report/comprehensive-report/comprehensive-report.component";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import {
+  MatMomentDateModule,
+  MomentDateAdapter
+} from "@angular/material-moment-adapter";
 
 @NgModule({
   declarations: [
@@ -90,7 +96,10 @@ import { ComprehensiveReportComponent } from "./report/comprehensive-report/comp
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule, // for datepicker
+    MatNativeDateModule, // date picker
+    MatMomentDateModule // date picker  //npm i @angular/material-moment-adapter/ npm install moment --save
   ],
   providers: [
     Authservice,

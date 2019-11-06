@@ -4,6 +4,12 @@ import { ConstantService } from "./constant.service";
 import { Beneficiary } from "../models/beneficiary";
 import { Subject } from "rxjs";
 
+// interface mydates {
+//   id: number;
+//   from: string;
+//   to: string;
+// }
+
 @Injectable({
   providedIn: "root"
 })
@@ -56,13 +62,53 @@ export class BenficiaryService {
     });
   }
 
+  exportBolb(resp, name: string, saveAs) {
+    const blob = new Blob([resp], { type: "application/vnd.ms.excel" });
+    const file = new File([blob], name + ".xlsx", {
+      type: "application/vnd.ms.excel"
+    });
+    saveAs(file);
+  }
+
   exportBenByDept(id: number) {
-    return this.http.get(this.konst.apiURL + "export-all-ben_by_dept/" + id, {
+    return this.http.get(this.konst.apiURL + "export-all-ben-by-dept/" + id, {
       headers: new HttpHeaders({
         Authorization: "{data}",
         "Content-Type": "application/json"
       }),
       responseType: "blob"
     });
+  }
+
+  exportBenByDate(from: string, to: string) {
+    return this.http.get(
+      this.konst.apiURL + "export-all-ben-by-date/" + from + "/" + to,
+      {
+        headers: new HttpHeaders({
+          //  Authorization: "{data}",
+          "Content-Type": "application/json"
+        }),
+        responseType: "blob"
+      }
+    );
+  }
+
+  exportBenByDeptAndDate(id: number, from: string, to: string) {
+    return this.http.get(
+      this.konst.apiURL +
+        "export-all-ben-by-dept-and-dates/" +
+        id +
+        "/" +
+        from +
+        "/" +
+        to,
+      {
+        headers: new HttpHeaders({
+          //  Authorization: "{data}",
+          "Content-Type": "application/json"
+        }),
+        responseType: "blob"
+      }
+    );
   }
 }
