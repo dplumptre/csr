@@ -9,17 +9,28 @@ import { NgForm } from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   @ViewChild("l", { static: true }) element_login: NgForm;
-
+  isLoading: boolean = false;
+  error: string;
   constructor(private authService: Authservice) {}
 
   ngOnInit() {}
 
   onLogin() {
-    // this.authService.login(
-    //   this.element_email.nativeElement.value,
-    //   this.element_pass.nativeElement.value
-    // );
+    this.isLoading = true;
+    this.authService
+      .login(this.element_login.value.email, this.element_login.value.password)
+      .subscribe(
+        resData => {
+          console.log(resData);
+          this.isLoading = false;
+        },
+        errorMessage => {
+          console.log(errorMessage.error.error);
+          this.error = errorMessage.error.error;
+          this.isLoading = false;
+        }
+      );
 
-    console.log(this.element_login);
+    //console.log(this.element_login.value.email);
   }
 }

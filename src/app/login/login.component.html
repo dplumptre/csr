@@ -9,6 +9,13 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+
+  <div class="alert alert-danger" role="alert" *ngIf="error" >
+                  <p class="alert-heading">An Error occurred</p>
+                  <ul >
+                   <li >{{error}}</li>
+                 </ul> 
+                  </div>
                   </div>
                 <form class="user" (ngSubmit)="onLogin()" #l="ngForm">
                     <div class="form-group">
@@ -35,19 +42,21 @@
                       </div>
                     </div>
 <div class="submit">
+                  <div *ngIf="isLoading">
+                    loading...
+                  </div>
                     <button [disabled]="!l.valid" type="submit" class="btn btn-primary btn-user btn-block">
                       Login
                     </button>
 </div>
-          
                   </form>
                   <hr>
                   <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a>
                   </div>
-                  <div class="text-center">
+                 <!-- <div class="text-center">
                     <a class="small" routerLink="/register">Create an Account!</a>
-                  </div>
+                  </div>-->
             </div>
           </div>
         </div>
