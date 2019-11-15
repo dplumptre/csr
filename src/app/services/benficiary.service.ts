@@ -3,24 +3,34 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConstantService } from "./constant.service";
 import { Beneficiary } from "../models/beneficiary";
 import { Subject } from "rxjs";
-
-// interface mydates {
-//   id: number;
-//   from: string;
-//   to: string;
-// }
+import { Authservice } from "./authservice";
 
 @Injectable({
   providedIn: "root"
 })
 export class BenficiaryService {
-  constructor(private http: HttpClient, private konst: ConstantService) {}
+  constructor(
+    private http: HttpClient,
+    private konst: ConstantService,
+    private authService: Authservice
+  ) {}
 
   singleBen = new Subject<Beneficiary>();
   updateNewBeneficiaryEntry = new Subject<Beneficiary[]>(); // update beneficiary anytime theres an entry
   singleBenId = new Subject<number>();
 
   getBeneficiary() {
+    // this.authService.AuthUserData.subscribe(myauthuser => {
+    //   console.log(myauthuser);
+    //   const headers = new HttpHeaders({
+    //     "Content-Type": "application/json",
+    //     Authorization: "Bearer " + myauthuser.token
+    //   });
+    //   return this.http.get<Beneficiary[]>(this.konst.apiURL + "beneficiaries", {
+    //     headers: headers
+    //   });
+    // });
+
     return this.http.get<Beneficiary[]>(this.konst.apiURL + "beneficiaries");
   }
 

@@ -23,7 +23,7 @@ import { DownloadComponent } from "./download/download.component";
 import { DepartmentsComponent } from "./departments/departments.component";
 import { DepartmentListComponent } from "./departments/department-list/department-list.component";
 import { DepartmentCreateComponent } from "./departments/department-create/department-create.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
 import { AllBeneficiariesComponent } from "./all-beneficiaries/all-beneficiaries.component";
@@ -51,6 +51,8 @@ import {
   MatMomentDateModule,
   MomentDateAdapter
 } from "@angular/material-moment-adapter";
+import { AuthInterceptorService } from "./services/auth-interceptor.service";
+import { UsersService } from "./services/users.service";
 
 @NgModule({
   declarations: [
@@ -104,6 +106,12 @@ import {
   providers: [
     Authservice,
     BenficiaryService,
+    UsersService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
     { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent],

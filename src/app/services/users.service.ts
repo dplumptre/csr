@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConstantService } from "./constant.service";
-import { HttpClient } from "@angular/common/http";
 import { User } from "../models/user";
 import { Subject } from "rxjs";
+import { Authservice } from "./authservice";
 
 @Injectable({
   providedIn: "root"
@@ -24,6 +25,16 @@ export class UsersService {
 
   getSingleUser(ben: number) {
     return this.http.get<User>(this.konst.apiURL + "user/" + ben);
+  }
+
+  getSingleUserByEmail(ben: string, token: string) {
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    });
+    return this.http.get<User>(this.konst.apiURL + "user-email/" + ben, {
+      headers: headers
+    });
   }
 
   createUser(ben: User) {

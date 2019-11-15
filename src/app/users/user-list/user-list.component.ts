@@ -58,6 +58,7 @@ export class UserListComponent implements OnInit {
   }
 
   onViewUser(ben: number) {
+    console.log(ben);
     this.usersService.getSingleUser(ben).subscribe(myuser => {
       this.usersService.singleUser.next(myuser);
     });
