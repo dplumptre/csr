@@ -87,7 +87,7 @@
 
              
 
-              <div  *ngIf="admin; else noAdmin" class="form-group">
+              <div  *ngIf="role == 'admin'; else noAdmin" class="form-group">
               <select placeholder="Departments" style="font-size: .8rem;border-radius:10rem;padding:0.5rem 1rem;"  ngModel  name="department_id" class="form-control" id="departments" required>
               <option *ngFor="let department of departments; let i = index" [value]="department.id">
               {{department.name}}
@@ -99,7 +99,7 @@
               <ng-template #noAdmin>
               <div class="form-group">
                    <input type="hidden" 
-                   placeholder="Department"  [(ngModel)]="dept" 
+                   placeholder="Department"  [(ngModel)]="dept_id" 
                    name="department_id" required>
                  </div>   
               </ng-template>

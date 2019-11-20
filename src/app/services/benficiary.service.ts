@@ -34,6 +34,12 @@ export class BenficiaryService {
     return this.http.get<Beneficiary[]>(this.konst.apiURL + "beneficiaries");
   }
 
+  getBeneficiaryByDept(num: number) {
+    return this.http.get<Beneficiary[]>(
+      this.konst.apiURL + "beneficiaries/dept/" + num
+    );
+  }
+
   getSingleBeneficiary(ben: number) {
     return this.http.get<Beneficiary>(
       this.konst.apiURL + "beneficiaries/" + ben

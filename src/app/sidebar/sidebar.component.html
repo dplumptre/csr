@@ -32,7 +32,7 @@
 
      <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/users">
+        <a class="nav-link" routerLink="/users"  *ngIf="role == 'admin'">
           <i class="fas fa-fw fa-users"></i>
           <span>Users</span></a>
       </li>

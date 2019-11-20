@@ -13,6 +13,7 @@ import {
 import { BeneficiaryEditComponent } from "src/app/beneficiaries/beneficiary-edit/beneficiary-edit.component";
 import { Subscription } from "rxjs";
 import { BeneficiaryCreateComponent } from "../beneficiary-create/beneficiary-create.component";
+import { Authservice } from "src/app/services/authservice";
 
 @Component({
   selector: "app-beneficiary-list",
@@ -25,29 +26,59 @@ export class BeneficiaryListComponent implements OnInit, OnDestroy {
 
   beneficiaries: MatTableDataSource<Beneficiary>;
   the_benz: Subscription;
+  the_update = new Subscription();
+  isLoading = false;
+  role: string;
+  authsub = new Subscription();
+  dept_id: number;
 
-  displayedColumnsFull: string[] = ["name", "email", "view", "edit", "delete"];
+  displayedColumnsFull: string[] = ["name", "email", "delete"];
 
   constructor(
     private beneficiaryService: BenficiaryService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: Authservice
   ) {}
 
   ngOnInit() {
-    // Assign the data to the data source for the table to render
-    this.beneficiaryService.getBeneficiary().subscribe(res => {
-      this.beneficiaries = new MatTableDataSource(res);
-      this.beneficiaries.paginator = this.paginator;
-      this.beneficiaries.sort = this.sort;
+    this.authsub = this.authService.AuthUserData.subscribe(myauthuser => {
+      this.role = myauthuser.rolesSlug;
+      this.dept_id = myauthuser.department_id;
+      console.log(this.role);
     });
+
+    this.isLoading = true;
+
     // this is to update the recently added entry
     this.the_benz = this.beneficiaryService.updateNewBeneficiaryEntry.subscribe(
       res => {
+        this.isLoading = false;
         this.beneficiaries = new MatTableDataSource(res);
         this.beneficiaries.paginator = this.paginator;
         this.beneficiaries.sort = this.sort;
       }
     );
+
+    if (this.role == "admin") {
+      // Assign the data to the data source for the table to render
+      this.the_benz = this.beneficiaryService
+        .getBeneficiary()
+        .subscribe(res => {
+          this.isLoading = false;
+          this.beneficiaries = new MatTableDataSource(res);
+          this.beneficiaries.paginator = this.paginator;
+          this.beneficiaries.sort = this.sort;
+        });
+    } else {
+      this.the_benz = this.beneficiaryService
+        .getBeneficiaryByDept(this.dept_id)
+        .subscribe(res => {
+          this.isLoading = false;
+          this.beneficiaries = new MatTableDataSource(res);
+          this.beneficiaries.paginator = this.paginator;
+          this.beneficiaries.sort = this.sort;
+        });
+    }
   }
 
   applyFilter(filterValue: string) {
@@ -59,7 +90,6 @@ export class BeneficiaryListComponent implements OnInit, OnDestroy {
   }
 
   onViewBen(ben: number) {
-    //alert(ben);
     this.beneficiaryService.getSingleBeneficiary(ben).subscribe(myuser => {
       //console.log(myuser);
       this.beneficiaryService.singleBen.next(myuser);
@@ -89,6 +119,24 @@ export class BeneficiaryListComponent implements OnInit, OnDestroy {
     var x = confirm("Are you sure you want to delete?");
     if (x) {
       this.beneficiaryService.deleteBeneficiary(id);
+
+      if (this.role == "admin") {
+        this.the_update = this.beneficiaryService
+          .getBeneficiary()
+          .subscribe(data => {
+            this.beneficiaryService.updateNewBeneficiaryEntry.next(data);
+          });
+        console.log("the admin stuff");
+      }
+
+      if (this.role == "user") {
+        this.the_update = this.beneficiaryService
+          .getBeneficiaryByDept(this.dept_id)
+          .subscribe(data => {
+            this.beneficiaryService.updateNewBeneficiaryEntry.next(data);
+          });
+        console.log("the user stuff" + this.dept_id);
+      }
     } else {
       return false;
     }
@@ -96,5 +144,7 @@ export class BeneficiaryListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.the_benz.unsubscribe();
+    this.authsub.unsubscribe();
+    this.the_update.unsubscribe();
   }
 }

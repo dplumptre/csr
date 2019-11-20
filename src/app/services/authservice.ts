@@ -16,9 +16,8 @@ export interface AuthResponseData {
   providedIn: "root"
 })
 export class Authservice {
-  // AuthUserData = new Subject<UserAuth>();
-
   AuthUserData = new BehaviorSubject<UserAuth>(null);
+  private tokenExpirationTimer: any;
 
   constructor(
     private http: HttpClient,
@@ -59,8 +58,8 @@ export class Authservice {
               );
 
               this.AuthUserData.next(myuser); // to store my user data
-
-              //     // return data;
+              this.autoLogout(+data.expires * 1000);
+              localStorage.setItem("authUserData", JSON.stringify(myuser));
             });
         })
       );
@@ -72,8 +71,51 @@ export class Authservice {
 
   logout() {
     this.http.get(this.konst.apiURL + "logout");
+    localStorage.removeItem("authUserData");
     this.router.navigate(["/"]);
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
   }
 
-  authenticate() {}
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration); // you can test by changing it to 2000 thats 2secs it will logout by itself
+  }
+
+  autoLogin() {
+    // we call this function at the top of our app which is app.components.ts
+    const userData: {
+      id: number;
+      name: string;
+      email: string;
+      rolesSlug: string;
+      department_id: number;
+      _token: string;
+      _tokenExpirationDate: Date;
+    } = JSON.parse(localStorage.getItem("authUserData"));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new UserAuth(
+      userData.id,
+      userData.name,
+      userData.email,
+      userData.rolesSlug,
+      userData.department_id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    if (loadedUser.token) {
+      // you have access to the token method now; if the token has not expired you can load userdata
+      this.AuthUserData.next(loadedUser);
+      const expirationDurationTime =
+        new Date(userData._tokenExpirationDate).getTime() -
+        new Date().getTime();
+      this.autoLogout(expirationDurationTime);
+    }
+  }
 }

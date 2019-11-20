@@ -5,7 +5,8 @@ import { DepartmentService } from "src/app/services/department.service";
 import { BenficiaryService } from "src/app/services/benficiary.service";
 import { saveAs } from "file-saver";
 import * as moment from "moment";
-import { empty } from "rxjs";
+import { empty, Subscription } from "rxjs";
+import { Authservice } from "src/app/services/authservice";
 
 @Component({
   selector: "app-department-report",
@@ -21,15 +22,29 @@ export class DepartmentReportComponent implements OnInit {
   isLoading = false;
   result: [] = [];
   responseData: any = {};
+  authsub = new Subscription();
+  role: string;
+  dept_id: number;
+
   constructor(
     private departmentService: DepartmentService,
-    private beneficiaryService: BenficiaryService
+    private beneficiaryService: BenficiaryService,
+    private authService: Authservice
   ) {}
 
   ngOnInit() {
+    this.authsub = this.authService.AuthUserData.subscribe(myauthuser => {
+      this.role = myauthuser.rolesSlug;
+      this.dept_id = myauthuser.department_id;
+    });
+
     this.departmentService.getDepartment().subscribe(Response => {
       this.departments = Response;
     });
+  }
+
+  ngOnDestroy() {
+    this.authsub.unsubscribe();
   }
 
   onSubmit() {
@@ -49,44 +64,56 @@ export class DepartmentReportComponent implements OnInit {
         id == null) ||
       id == ""
     ) {
-      // all ben download
-      console.log("all ben");
-      this.isLoading = true;
-      this.beneficiaryService.downloadAllBeneficiary().subscribe(
-        resp => {
-          //  console.log(resp);
-          this.isLoading = false;
-          this.responseData = resp;
-          this.result = [];
+      /**
+       *  download all beneficiaries
+       *  check if its admin or user
+       *  admin downloads all user download only by dept
+       */
+      /**
+*   To do export you after receiving download in in xlx in web api
+*    npm install file-saver --save
+    // use for typescript
+    npm install @types/file-saver --save-dev
+    saveAs(file);
+*/
 
-          // console.log("this is success");
-          this.success = "success";
-          setTimeout(() => {
-            this.success = "";
-          }, 3000);
+      if (this.role == "admin") {
+        console.log("all ben");
+        this.isLoading = true;
+        this.beneficiaryService.downloadAllBeneficiary().subscribe(
+          resp => {
+            this.isLoading = false;
+            this.responseData = resp;
+            this.result = [];
+            this.success = "success";
+            setTimeout(() => {
+              this.success = "";
+            }, 3000);
+            this.beneficiaryService.exportBolb(resp, "all_beneficiary", saveAs);
+            this.element_all_dept.reset();
+          },
+          res => {
+            this.isLoading = false;
+            console.log("xxxxx");
+            console.log(res);
+          }
+        );
+      }
 
-          /**
-   *   To do export you after receiving download in in xlx in web api
-   *    npm install file-saver --save
-       // use for typescript
-       npm install @types/file-saver --save-dev
-       saveAs(file);
-   */
-          this.beneficiaryService.exportBolb(resp, "all_beneficiary", saveAs);
-          this.element_all_dept.reset();
-        },
-        res => {
-          this.isLoading = false;
-          console.log("xxxxx");
-          console.log(res);
-        }
-      );
+      if (this.role == "user") {
+        console.log("this is a user");
+      }
+      /**   end of check both admin/or user
+       * */
     } else if (
       (dateInFormat_from == "Invalid date" ||
         dateInFormat_to == "Invalid date") &&
       id != null
     ) {
       // by department
+      /**
+       *   checking by department
+       * */
 
       console.log("by dept");
       this.isLoading = true;
@@ -123,6 +150,9 @@ export class DepartmentReportComponent implements OnInit {
       id == ""
     ) {
       // by date
+      /**
+       *   checking by date
+       * */
       console.log("by date");
       this.isLoading = true;
       this.beneficiaryService
@@ -158,6 +188,9 @@ export class DepartmentReportComponent implements OnInit {
       dateInFormat_to != "Invalid date" &&
       id != null
     ) {
+      /**
+       *   checking by department and date
+       * */
       // by date and dept
       console.log("by date and dept");
       this.isLoading = true;
