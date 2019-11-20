@@ -10,11 +10,16 @@ import { DepartmentsComponent } from "./departments/departments.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
 import { AuthGuard } from "./auth-guard";
+import { AuthGuardUser } from "./auth-guard-user";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "users", component: UsersComponent, canActivate: [AuthGuard] },
+  {
+    path: "users",
+    component: UsersComponent,
+    canActivate: [AuthGuard, AuthGuardUser]
+  },
   { path: "report", component: ReportComponent, canActivate: [AuthGuard] },
   { path: "data", component: DataComponent },
   { path: "departments", component: DepartmentsComponent },
