@@ -53,6 +53,8 @@ import {
 } from "@angular/material-moment-adapter";
 import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { UsersService } from "./services/users.service";
+import { LoadersComponent } from "./loaders/loaders.component";
+import { LoaderInterceptor } from "./services/loaders-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -85,7 +87,8 @@ import { UsersService } from "./services/users.service";
     BeneficiaryCreateComponent,
     UserCreateComponent,
     DepartmentReportComponent,
-    ComprehensiveReportComponent
+    ComprehensiveReportComponent,
+    LoadersComponent
   ],
   imports: [
     BrowserModule,
@@ -112,6 +115,12 @@ import { UsersService } from "./services/users.service";
       useClass: AuthInterceptorService,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
+
     { provide: MatDialogRef, useValue: {} }
   ],
   bootstrap: [AppComponent],

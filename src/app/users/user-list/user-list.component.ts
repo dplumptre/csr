@@ -18,19 +18,13 @@ import { UserEditComponent } from "../user-edit/user-edit.component";
   templateUrl: "./user-list.component.html",
   styleUrls: ["./user-list.component.css"]
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   the_data: Subscription;
   users: MatTableDataSource<User>;
-  displayedColumnsFull: string[] = [
-    "name",
-    "email",
-    "phone",
-    "view",
-    "edit",
-    "delete"
-  ];
+  the_update = new Subscription();
+  displayedColumnsFull: string[] = ["name", "delete"];
 
   constructor(private usersService: UsersService, public dialog: MatDialog) {}
 
@@ -90,5 +84,9 @@ export class UserListComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  ngOnDestroy() {
+    this.the_data.unsubscribe();
   }
 }

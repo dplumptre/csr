@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { ConstantService } from "./constant.service";
 import { User } from "../models/user";
-import { Subject } from "rxjs";
+import { Subject, Subscription } from "rxjs";
 import { Authservice } from "./authservice";
 
 @Injectable({
@@ -12,7 +12,6 @@ export class UsersService {
   singleUser = new Subject<User>();
   updateNewUserEntry = new Subject<User[]>(); // update beneficiary anytime theres an entry
   singleUserId = new Subject<number>();
-
   constructor(private konst: ConstantService, private http: HttpClient) {}
 
   getUsers() {
@@ -52,7 +51,7 @@ export class UsersService {
       .delete<User>(this.konst.apiURL + "delete-user/" + ben)
       .subscribe(response => {
         console.log(response);
-        this.getUsers().subscribe(data => {
+        this.getRoleUsers().subscribe(data => {
           this.updateNewUserEntry.next(data);
         });
       });

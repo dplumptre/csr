@@ -4,6 +4,7 @@ import { NgForm } from "@angular/forms";
 import { DepartmentService } from "src/app/services/department.service";
 import { UsersService } from "src/app/services/users.service";
 import { MatDialogRef } from "@angular/material/dialog";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-user-create",
@@ -17,7 +18,7 @@ export class UserCreateComponent implements OnInit {
   isLoading = false;
   result: [] = [];
   responseData: any = {};
-
+  the_update = new Subscription();
   constructor(
     public dialogRef: MatDialogRef<UserCreateComponent>,
     private departmentService: DepartmentService,
@@ -49,9 +50,7 @@ export class UserCreateComponent implements OnInit {
           this.dialogRef.close();
         }, 2000);
 
-        // this is to update the recently added entry
-        this.usersService.getUsers().subscribe(data => {
-          // console.log(data);
+        this.the_update = this.usersService.getRoleUsers().subscribe(data => {
           this.usersService.updateNewUserEntry.next(data);
         });
       },
