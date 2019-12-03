@@ -1,0 +1,79 @@
+<div class="container"> 
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4"></h1>
+
+
+                  </div>
+                <form class="user" (ngSubmit)="onSubmit()" #l="ngForm">
+
+
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" 
+                      placeholder="Enter New Password" name="password" ngModel required #password="ngModel">
+                    </div>
+
+               <div *ngIf="!password.valid && password.touched" class="response text-danger" >Please Enter password</div> 
+
+
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="exampleInputcPassword" 
+                      placeholder="Confirm New Password" name="password_confirmation" ngModel required #password_confirmation ="ngModel">
+                    </div>
+
+               <div *ngIf="!password_confirmation.valid && password_confirmation.touched" class="response text-danger" >Please Enter Password Confirmation</div> 
+
+
+
+
+
+                    <div class="alert alert-danger" role="alert" *ngIf="error" >
+                  <ul >
+                   <li >{{error}}</li>
+                 </ul>
+                  </div>
+
+
+
+
+
+                 <div class="alert alert-success" role="alert" *ngIf="success" >
+                  <p>{{ success}}</p> 
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+                    <div style="text-align:center">
+ <app-loaders></app-loaders>
+</div>
+<div class="submit">
+
+                    <button [disabled]="!l.valid" type="submit" class="btn btn-danger btn-user btn-block">
+                      Reset password
+                    </button>
+</div>
+                  </form>
+                  <hr>
+                 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>

@@ -62,7 +62,7 @@
 
 
 
-                  <div class="alert alert-danger" role="alert" *ngIf="result.length>2" >
+                  <div class="alert alert-danger" role="alert" *ngIf="result.length>0" >
                   <h4 class="alert-heading">An Error occurred</h4>
                   <ul >
                    <li *ngFor="let r of result">{{r}}</li>
@@ -71,13 +71,13 @@
                  <div class="alert alert-success" role="alert" *ngIf="success" >
                   <p>{{ success}}</p> 
                   </div>
-                  <div *ngIf="isLoading">
-                    loading...
-                  </div>
+<div style="text-align:center">
+ <app-loaders></app-loaders>
+</div>
 
 <div class="submit">
                    
- <button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Register Account</button>
+ <button [disabled]="!f.valid"  class="btn btn-danger btn-user btn-block" type="submit"> Register Account</button>
 </div>
 </form>
 

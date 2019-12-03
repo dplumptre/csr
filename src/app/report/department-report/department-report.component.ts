@@ -209,11 +209,11 @@ export class DepartmentReportComponent implements OnInit {
               this.success = "";
             }, 3000);
 
-            this.beneficiaryService.exportBolb(
-              resp,
-              "beneficiary_by_date_dept",
-              saveAs
-            );
+            // this.beneficiaryService.exportBolb(
+            //   resp,
+            //   "beneficiary_by_date_dept",
+            //   saveAs
+            // );
             this.element_all_dept.reset();
           },
           res => {

@@ -55,6 +55,8 @@ import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import { UsersService } from "./services/users.service";
 import { LoadersComponent } from "./loaders/loaders.component";
 import { LoaderInterceptor } from "./services/loaders-interceptor.service";
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetComponent } from './reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +90,9 @@ import { LoaderInterceptor } from "./services/loaders-interceptor.service";
     UserCreateComponent,
     DepartmentReportComponent,
     ComprehensiveReportComponent,
-    LoadersComponent
+    LoadersComponent,
+    ForgetPasswordComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

@@ -83,6 +83,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
       );
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
   ngOnDestroy() {
     this.unsubcribesingleUser.unsubscribe();
   }

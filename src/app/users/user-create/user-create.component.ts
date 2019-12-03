@@ -31,6 +31,10 @@ export class UserCreateComponent implements OnInit {
     });
   }
 
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
   onSubmit() {
     // this.authService.register(
     //   this.element_name.nativeElement.value,
@@ -56,8 +60,8 @@ export class UserCreateComponent implements OnInit {
       },
       error => {
         this.result = error.error.result;
-        // console.log(error.error);
-        // console.log(error.error.result);
+        console.log(error.error);
+        console.log(error.error.result);
       }
     );
   }

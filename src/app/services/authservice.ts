@@ -69,6 +69,19 @@ export class Authservice {
     alert(name + " " + email + " " + pass);
   }
 
+  forgetPassword(email: string) {
+    return this.http.post<string>(this.konst.apiURL + "forget-password", {
+      email: email
+    });
+  }
+
+  resetPassword(token: string, password: string, password2: string) {
+    return this.http.post<string>(
+      this.konst.apiURL + "password-reset/" + token,
+      { token: token, password: password, password_confirmation: password2 }
+    );
+  }
+
   logout() {
     this.http.get(this.konst.apiURL + "logout");
     localStorage.removeItem("authUserData");

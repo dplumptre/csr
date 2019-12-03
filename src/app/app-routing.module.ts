@@ -11,6 +11,8 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { BeneficiariesComponent } from "./beneficiaries/beneficiaries.component";
 import { AuthGuard } from "./auth-guard";
 import { AuthGuardUser } from "./auth-guard-user";
+import { ResetComponent } from "./reset/reset.component";
+import { ForgetPasswordComponent } from "./forget-password/forget-password.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: "report", component: ReportComponent, canActivate: [AuthGuard] },
   { path: "data", component: DataComponent },
   { path: "departments", component: DepartmentsComponent },
+  { path: "forget-password", component: ForgetPasswordComponent },
+  { path: "reset-password/:hashkey", component: ResetComponent },
   {
     path: "dashboard",
     component: DashboardComponent,

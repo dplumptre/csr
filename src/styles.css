@@ -5,6 +5,12 @@
   color: #eeeeee !important;
 }
 
+/* a {
+  color: #e74a3b !important;
+  text-decoration: none !important;
+  background-color: transparent !important;
+} */
+
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }

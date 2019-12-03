@@ -55,13 +55,13 @@
                  <div class="alert alert-success" role="alert" *ngIf="success" >
                   <p>{{ success}}</p> 
                   </div>
-                  <div *ngIf="isLoading">
-                    loading...
-                  </div>
+<div style="text-align:center">
+ <app-loaders></app-loaders>
+</div>
 
 <div class="submit">
                    
- <button [disabled]="!f.valid"  class="btn btn-primary btn-user btn-block" type="submit"> Edit Account</button>
+ <button [disabled]="!f.valid"  class="btn btn-danger btn-user btn-block" type="submit"> Edit Account</button>
 </div>
 </form>
 
